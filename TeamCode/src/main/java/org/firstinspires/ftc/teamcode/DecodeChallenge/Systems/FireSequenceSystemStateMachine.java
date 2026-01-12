@@ -8,7 +8,7 @@ import org.firstinspires.ftc.teamcode.DecodeChallenge.Controllers.IntakeControll
 import org.firstinspires.ftc.teamcode.DecodeChallenge.Controllers.LaunchController;
 import org.firstinspires.ftc.teamcode.DecodeChallenge.Controllers.ScooperController;
 
-public class FireSequence {
+public class FireSequenceSystemStateMachine {
 
     public enum LaunchState { Off, SpinningUp, ReadyToFire, ScoopUp, ScoopDown, Loading, BallSense }
 
@@ -24,12 +24,12 @@ public class FireSequence {
     private int _ballsFired;
     private boolean _fireAway;
 
-    public FireSequence(Telemetry telemetry, RobotMapping rc) {
+    public FireSequenceSystemStateMachine(Telemetry telemetry, RobotMapping rm) {
         _telemetry = telemetry;
-        _intake = new IntakeController(rc.UpperLeftIntake, rc.UpperRightIntake, rc.LowerLeftIntake, rc.LowerRightIntake);
-        _launcher = new LaunchController(telemetry, rc.Goat, 1500);
-        _scooper = new ScooperController(rc.Scooper, 300);
-        _distanceSensor = new DistanceSensorController(rc.ColorSensor);
+        _intake = new IntakeController(rm.UpperLeftIntake, rm.UpperRightIntake, rm.LowerLeftIntake, rm.LowerRightIntake);
+        _launcher = new LaunchController(telemetry, rm.Goat, 1500);
+        _scooper = new ScooperController(rm.Scooper, 300);
+        _distanceSensor = new DistanceSensorController(rm.ColorSensor);
 
         _fireAway = false;
     }
