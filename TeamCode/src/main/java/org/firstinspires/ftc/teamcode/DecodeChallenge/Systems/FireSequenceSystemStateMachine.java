@@ -40,6 +40,10 @@ public class FireSequenceSystemStateMachine {
         ChangeState(LaunchState.SpinningUp);
     }
 
+    public boolean IsReadyToFire(){
+        return _currentState == LaunchState.ReadyToFire;
+    }
+
     public void Fire(){
         _fireAway = true;
     }
@@ -49,7 +53,11 @@ public class FireSequenceSystemStateMachine {
         ChangeState(LaunchState.Loading);
     }
 
-    public LaunchState GetStatus() {
+    public boolean IsFireComplete(){
+        return _currentState == LaunchState.Off;
+    }
+
+    public LaunchState GetState() {
 
         switch (_currentState) {
 
@@ -63,13 +71,14 @@ public class FireSequenceSystemStateMachine {
 //                }
 
                 _telemetry.addData("Fire Mode", "Speed check bypass, no encoder cable");
-                if (_stateTimer.milliseconds() > 500){
+                if (_stateTimer.milliseconds() > 1000){
                     _intake.Deactivate();
                     ChangeState(LaunchState.ReadyToFire);
                 }
                 break;
 
             case ReadyToFire:
+                // TODO: A BALL MIGHT FALL OUT DURING INTAKE, HAVE A WAY TO TIMEOUT
                 if (_fireAway && _distanceSensor.GetDistanceInch() <= 3) {
                     _ballsFired++;
                     _fireAway = false;
