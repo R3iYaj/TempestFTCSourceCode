@@ -17,7 +17,6 @@ import java.util.List;
 public class DecodeDriveSystemStateMachine {
 
     public enum DriveState { DecdingNextSpeciment, DriveToRow, WaitForLoadTrigger, LoadingSpecimens, LoadingComplete, DriveToLaunch, ReadyToFire, Idle }
-
     private final Telemetry _telemetry;
     private final Follower _follower;
     private final CameraController _camera;
@@ -63,18 +62,18 @@ public class DecodeDriveSystemStateMachine {
             _startingSpecimen = AprilTagConstant.GPP;
         }
 
-        // TODO: MAKE THE DEFAULT START POSTION IS EITHER RED OR BLUE SIDE
+        // TODO: MAKE THE DEFAULT START POSITION IS EITHER RED OR BLUE SIDE---DONE?? isn't it already determined by color?
         Pose startPosition = null;
         switch (_allianceColor)
         {
             case Blue:
-                // TODO: WHAT IS THE BLUE SIDE START POINT?
-                startPosition = new Pose(56.000, 8.000, Math.toRadians(90));
+                // TODO: WHAT IS THE BLUE SIDE START POINT? DONE
+                startPosition = new Pose(60.056, 9.019, Math.toRadians(90));
                 break;
 
             case Red:
-                // TODO: WHAT IS THE RED SIDE START POINT?
-                startPosition = new Pose(56.000, 8.000, Math.toRadians(90));
+                // TODO: WHAT IS THE RED SIDE START POINT? DONE
+                startPosition = new Pose(86.890, 8.609, Math.toRadians(90));
                 break;
         }
 
