@@ -38,7 +38,7 @@ public class DecodeDriveSystemStateMachine {
     private List<Integer> _completedSpecimens = new ArrayList<>();
     private int _targetSpecimenId;
     private int _startingSpecimen;
-    private DriveState _currentDriveState;
+    private DriveState _currentDriveState = DriveState.Idle;
     private boolean _loadTriggerPulled;
     private boolean _returnTriggerPulled;
 
